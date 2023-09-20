@@ -1,0 +1,25 @@
+pair<int,int> pairdiameter(Node *root)
+  {
+      if(root==NULL)
+      {
+          pair<int,int> p(0,0);
+          return p;
+      }
+      pair<int,int>left=pairdiameter(root->left);
+      pair<int,int>right=pairdiameter(root->right);
+      int leftcount=left.first;
+      int rightcount=right.first;
+      int heightcount=left.second+right.second+1;
+      pair<int,int>ans;
+      ans.first=max(leftcount,max(rightcount,heightcount));
+      ans.second=max(left.second,right.second)+1;
+      return ans;
+  }
+    // Function to return the diameter of a Binary Tree.
+    int diameter(Node* root) {
+        // Your code here
+        
+        pair<int,int>ans=pairdiameter(root);
+        return ans.first;
+        
+    }
